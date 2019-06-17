@@ -56,11 +56,11 @@ export default class Users extends Component {
     
         
         <div className="col-md-4.6 m-1">
-    <div class="card">
-<div class="card-body">
-<h4 class="card-title">{user.name}</h4>
-<p class="card-text">Email: {user.email}</p>
-<p class="card-text">Phone No: {user.password}</p>
+    <div className="card">
+<div className="card-body">
+<h4 className="card-title">{user.name}</h4>
+<p className="card-text">Email: {user.email}</p>
+<p className="card-text">Phone No: {user.password}</p>
 
     <Example phone={user.password} name={user.name}/>
     

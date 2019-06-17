@@ -8,9 +8,13 @@ export default class Example extends React.Component {
   
       this.handleShow = this.handleShow.bind(this);
       this.handleClose = this.handleClose.bind(this);
+      this.onChangeComment = this.onChangeComment.bind(this);
+      this.onSubmit = this.onSubmit.bind(this);
   
       this.state = {
         show: false,
+        comment: '',
+        submitComment: ''
       };
     }
   
@@ -21,7 +25,21 @@ export default class Example extends React.Component {
     handleShow() {
       this.setState({ show: true });
     }
-  
+
+    onChangeComment(e) {
+        this.setState({
+            comment: e.target.value
+        })
+    }
+
+   onSubmit(e) {
+    e.preventDefault()
+    this.setState({
+        submitComment: this.state.comment,
+        comment: ''
+    });
+    }
+   
     render() {
       return (
         <>
@@ -33,19 +51,22 @@ export default class Example extends React.Component {
             <Modal.Header closeButton>
               <Modal.Title>{this.props.phone}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Follow Ups</Modal.Body>
-            <div class="form-group container">    
-
-  <label class="form-label" for="inputDefault">Comments</label>
-  <input type="text" class="form-control" placeholder="Type Comments" id="inputDefault"></input>
-</div>
+            <Modal.Body>
+                <h6>Follow Ups</h6>
+                <p>{this.state.submitComment}</p>
+                </Modal.Body>
+            <form className="form-group container" >    
+            <label className="form-label" for="inputDefault">Comments</label>
+            <input  type="text"
+                                className="form-control"
+                                value={this.state.comment}
+                                onChange={this.onChangeComment}
+                                placeholder="Type Comments"
+                                />
             <Modal.Footer>
-            
-
-              <Button className="btn btn-success" variant="primary" onClick={this.handleClose}>
-                Save
-              </Button>
+            <button type="submit" onClick={this.onSubmit} class="btn btn-success">Submit</button>
             </Modal.Footer>
+            </form>
           </Modal>
         </>
       );
