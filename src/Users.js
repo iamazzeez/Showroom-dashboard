@@ -61,7 +61,7 @@ export default class Users extends Component {
 <h4 className="card-title">{user.name}</h4>
 <p className="card-text">Email: {user.email}</p>
 <p className="card-text">Phone No: {user.password}</p>
-<p className="card-text">Recent FollowUp: Coming for Service</p>
+<p className="card-text">Recent FollowUp: Comming for Service</p>
 
     <Example phone={user.password} name={user.name}/>
     
