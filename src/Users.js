@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
+import Example from './Modal';
 
 export default class Users extends Component {
     state = {
@@ -58,11 +59,10 @@ export default class Users extends Component {
     <div class="card">
 <div class="card-body">
 <h4 class="card-title">{user.name}</h4>
-<p class="card-text">Username: {user.username}</p>
 <p class="card-text">Email: {user.email}</p>
 <p class="card-text">Phone No: {user.password}</p>
 
-    <Link  className="btn btn-info " to= {`/edit/${user.username}`} >Details</Link>
+    <Example phone={user.password} name={user.name}/>
     
 </div>
 </div>
