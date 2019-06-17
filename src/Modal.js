@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, Button } from 'react-bootstrap';
 
 
-export default class Example extends React.Component {
+export default class DetailsModel extends React.Component {
     constructor(props, context) {
       super(props, context);
   

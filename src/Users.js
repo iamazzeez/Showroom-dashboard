@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import {Link} from 'react-router-dom'
-import Example from './Modal';
+import DetailsModel from './Modal';
 
 export default class Users extends Component {
     state = {
@@ -63,7 +63,7 @@ export default class Users extends Component {
 <p className="card-text">Phone No: {user.password}</p>
 <p className="card-text">Recent FollowUp: Comming for Service</p>
 
-    <Example phone={user.password} name={user.name}/>
+    <DetailsModel phone={user.password} name={user.name}/>
     
 </div>
 </div>
