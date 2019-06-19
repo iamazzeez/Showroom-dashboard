@@ -1,69 +1,71 @@
 import React, { Component } from 'react'
 // import {Link} from 'react-router-dom'
 import DetailsModel from './Modal';
+import db from "./firebase";
+
 
 export default class Users extends Component {
     state = {
-    data: ''
+    data: '',
+    users: [],
+    time: [],
+    userobj: {},
+    username: [],
+      text: '',
+      number: '',
+  
     }
 
-    componentDidMount(){
-  this.getAll()
+componentDidMount(){
+
+db.ref('dealer_demo/users').on('value', (snapshot) => {
+  snapshot.val()
+ 
+
+    this.setState({
+      users: snapshot.val(),
+    })
+
+  
+ 
+});
     
     }
 
 
-    getAll = () => {
-        fetch('https://user-auth-task.herokuapp.com/api/showusers', {
-            method: 'GET',
-            body: null,
-            headers: {
-              'Content-Type': 'application/json',
-          
-            }
-          })
-          .then(
-            (response) => {
-              if (response.status !== 200) {
-                console.log('Looks like there was a problem. Status Code: ' +
-                  response.status);
-                return;
-              }
-          
-              // Examine the text in the response
-              response.json().then((data) => {
-                if (data.error) {
-                  return this.setState({ error: data.message });
-                }
-              
-               console.log(data)
-                  return this.setState({ data: data })
-              
-            
-              })
-            }
-            )
+   
+    onChangeHandler = (e) => {
+      this.setState({
+        text : [e.target.value]
+      })
     }
+    
   
-
+   
+   
    
     
     render() {
-       
+       console.log(Object.values(this.state.users).map(obj => obj.age))
+      //  let u =console.log( Array.from(this.state.users))
+      // console.log(this.state.userobj)
+      let userobj =  Object.values(this.state.users).map(obj => obj ) 
+      console.log(this.state.users, this.state.time)
             return (
 <div className='row  m-1 '>
-        {Object.values(this.state.data).map(user => (   
+        {Object.values(this.state.users).map(user => (   
     
         
         <div className="col-md-4.6 m-1">
     <div className="card">
 <div className="card-body">
-<h4 className="card-title">{user.name}</h4>
-<p className="card-text">Email: {user.email}</p>
-<p className="card-text">Phone No: {user.password}</p>
+<h4 className="card-title">{user.username}</h4>
+<p className="card-text">Time to Call: {user.convinientTimeToCall}</p>
+<p className="card-text">Phone No: {user.phone}</p>
 <p className="card-text">Recent FollowUp: Comming for Service</p>
 
-    <DetailsModel phone={user.password} name={user.name}/>
+
+    <DetailsModel phone={user.phone} name={user.name} />
     
 </div>
 </div>

@@ -32,13 +32,40 @@ export default class DetailsModel extends React.Component {
         })
     }
 
-   onSubmit(e) {
-    e.preventDefault()
-    this.setState({
+  //  onSubmit(e) {
+  //   e.preventDefault()
+  //   this.setState({
+  //       submitComment: this.state.comment,
+  //       comment: ''
+  //   });
+  //   }
+
+    onSubmit = (e) => {
+      e.preventDefault()
+      fetch('http://localhost:5000/', {
+      method: 'POST',
+      body: JSON.stringify({ sms:   { message: this.state.comment, to:  this.props.phone }  }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(res => {
+      if(res.status !== 200 && res.status !== 201){
+        throw new Error('Failed!')
+      } 
+      res.json().then(resData => {
+      alert('User created')
+      console.log(resData);
+    })
+    })
+    .catch(err => {
+      console.log(err)
+    }) 
+
+        this.setState({
         submitComment: this.state.comment,
         comment: ''
     });
-    }
+      }
    
     render() {
       return (
@@ -56,15 +83,15 @@ export default class DetailsModel extends React.Component {
                 <p>{this.state.submitComment}</p>
                 </Modal.Body>
             <form className="form-group container" >    
-            <label className="form-label" for="inputDefault">Comments</label>
+            <label className="form-label" for="inputDefault">Message</label>
             <input  type="text"
                                 className="form-control"
                                 value={this.state.comment}
                                 onChange={this.onChangeComment}
-                                placeholder="Type Comments"
+                                placeholder="Type Message"
                                 />
             <Modal.Footer>
-            <button type="submit" onClick={this.onSubmit} class="btn btn-success">Submit</button>
+            <button type="submit" onClick={this.onSubmit} class="btn btn-success">Send</button>
             </Modal.Footer>
             </form>
           </Modal>
