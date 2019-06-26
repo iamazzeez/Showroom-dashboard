@@ -31,22 +31,31 @@ export default class UserDetails extends Component {
     render() {
         console.log(this.state.user)
         return (
-            <div className='row'>
-            <div className="m-2 col-lg-2 ">
- <div className="card border-primary mb-2" style={{"max-width": "40rem"}}>
-  <div className="card-header">Header</div>
+            <div className='row m-0'>
+            <div className="col " style={{"max-width": "50rem"}}>
+ <div className="card border-primary m-3" >
+  <div className="card-header">NYC</div>
   <div className="card-body">
-    <h4 className="card-title">Primary card title</h4>
-    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h4 className="card-title">Name: {this.state.name}</h4>
+    <p className="card-text">Phone: {this.state.phone}</p>
+    <p className="card-text">Age: {this.state.age}</p>
+    <p className="card-text">Convinient time to call: {this.state.convinientTimeToCall}</p>
   </div>
 </div>
 </div>
-<div className="m-2 col-lg-2 ">
-<div className="card border-primary" style={{"max-width": "15rem"}}>
-  <div className="card-header">Header</div>
+<div className="col " style={{"max-width": "20rem"}}>
+<div className="card border-primary m-3" >
+  <div className="card-header">Cupon ID</div>
   <div className="card-body">
-    <h4 className="card-title">Primary card title</h4>
-    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h4 className="card-title">XTYEX135BC</h4>
+  </div>
+</div>
+</div>
+<div className="col " style={{"max-width": "20rem"}}>
+<div className="card border-primary m-3" >
+  <div className="card-header">Bike</div>
+  <div className="card-body">
+    <h4 className="card-title">Honda</h4>
   </div>
 </div>
 </div>
